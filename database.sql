@@ -30,6 +30,7 @@ CREATE TABLE `medical_record` (
   `Alcohol_Use` varchar(10) DEFAULT NULL,
   `Family_History` boolean DEFAULT 0,
   'Diabetes' boolean DEFAULT 0,
+  'Heart Attack Occurrance' boolean DEFAULT 0,
   PRIMARY KEY (`SN`),
   KEY `NewIndex1` (`patient_id`),
   CONSTRAINT `FK_medical_record` FOREIGN KEY (`patient_id`) REFERENCES `patient_info` (`patient_id`)
