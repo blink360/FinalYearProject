@@ -2,7 +2,8 @@
 SQLyog Community v9.20 
 MySQL - 5.5.5-10.1.31-MariaDB : Database - projectdb
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -27,7 +28,8 @@ CREATE TABLE `medical_record` (
   `Cholesterol` varchar(10) DEFAULT NULL,
   `Tobacco_Use` varchar(10) DEFAULT NULL,
   `Alcohol_Use` varchar(10) DEFAULT NULL,
-  `Family_History` varchar(10) DEFAULT NULL,
+  `Family_History` boolean DEFAULT 0,
+  'Diabetes' boolean DEFAULT 0,
   PRIMARY KEY (`SN`),
   KEY `NewIndex1` (`patient_id`),
   CONSTRAINT `FK_medical_record` FOREIGN KEY (`patient_id`) REFERENCES `patient_info` (`patient_id`)
