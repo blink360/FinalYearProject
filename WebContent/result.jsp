@@ -8,7 +8,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,87 +58,151 @@
 
 					<%
 						List<InputInformation> inp = (ArrayList) request.getAttribute("list");
-						
-						
-					
 					%>
 
-
-					<h1>Prediction:</h1>
 					</br> </br>
 
 					<%
-						for(InputInformation input1: inp){
-																							
-								List<Float> list = new ArrayList<>();
-								list.add((float)input1.getAge());
-								list.add((float)input1.getGender());
-								list.add((float)input1.getBloodPressure1());
-								list.add((float)input1.getBloodPressure2());
-								list.add((float)input1.getCholesterol());
-								list.add((float)input1.getHistory());
-								list.add((float)input1.getSmoking());
-								list.add((float)input1.getAlcohol());
-								list.add((float)input1.getDiabetes());
-								
-							
-								PrintWriter pw = new PrintWriter(new File("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\testset.csv"));
-								StringBuilder sb = new StringBuilder();
-								
-								sb.append(input1.getAge());
-								sb.append(',');
-								sb.append(input1.getGender());
-								sb.append(',');
-								sb.append(input1.getBloodPressure1());
-								sb.append(',');
-								sb.append(input1.getBloodPressure2());
-								sb.append(',');
-								sb.append(input1.getCholesterol());
-								sb.append(',');
-								sb.append(input1.getHistory());
-								sb.append(',');
-								sb.append(input1.getSmoking());
-								sb.append(',');
-								sb.append(input1.getAlcohol());
-								sb.append(',');
-								sb.append(input1.getDiabetes());
-								sb.append('\n');
-								
-								pw.write(sb.toString());
-						        pw.close();
-						       
+						for (InputInformation input1 : inp) {
+
+							List<Float> list = new ArrayList<>();
+							list.add((float) input1.getAge());
+							list.add((float) input1.getGender());
+							list.add((float) input1.getBloodPressure1());
+							list.add((float) input1.getBloodPressure2());
+							list.add((float) input1.getCholesterol());
+							list.add((float) input1.getHistory());
+							list.add((float) input1.getSmoking());
+							list.add((float) input1.getAlcohol());
+							list.add((float) input1.getDiabetes());
+
+							PrintWriter pw = new PrintWriter(
+									new File("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\testset.csv"));
+							StringBuilder sb = new StringBuilder();
+
+							sb.append(input1.getAge());
+							sb.append(',');
+							sb.append(input1.getGender());
+							sb.append(',');
+							sb.append(input1.getBloodPressure1());
+							sb.append(',');
+							sb.append(input1.getBloodPressure2());
+							sb.append(',');
+							sb.append(input1.getCholesterol());
+							sb.append(',');
+							sb.append(input1.getHistory());
+							sb.append(',');
+							sb.append(input1.getSmoking());
+							sb.append(',');
+							sb.append(input1.getAlcohol());
+							sb.append(',');
+							sb.append(input1.getDiabetes());
+							sb.append('\n');
+
+							pw.write(sb.toString());
+							pw.close();
+
+						}
+						String[] text = new String[5];
+						try {
+							String line;
+							int count = 0;
+
+							Process p = Runtime.getRuntime()
+									.exec("cmd /c C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\test.py");
+
+							BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+							BufferedReader bre = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+							while ((line = bri.readLine()) != null) {
+
+								text[count] = line.toString().replaceAll("(^\\[|\\]$)", "");
+								count++;
+								if (line.equals("[1.0]")) {
+					%>
+					<img src='resources/sad.png'
+						style="width: 200px; height: 200px; margin-left: 384px">
+					<h1>
+						<div id="high">you have high risk of having heart attack.
+							Please take care of your Health</div>
+					</h1>
+
+					<%
+						}
+
+								if (line.equals("[0.0]")) {
+					%>
+					<img src='resources/happy.jpg'
+						style="width: 260px; height: 200px; margin-left: 384px">
+					<h1>
+						<div id="high">Great!!! you have low risk of having heart
+							attack.</div>
+					</h1>
+					<%
+						}
+							}
+
+							bri.close();
+							while ((line = bre.readLine()) != null) {
+								out.println(line);
+							}
+							bre.close();
+							p.waitFor();
+
+						} catch (Exception err) {
+							err.printStackTrace();
+						}
+					%>
+
+					<%
+						
+					String test1 = text[1].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+					String test2 = text[2].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+					String test3 = text[3].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+					String test4 = text[4].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+					
+					String[] parts = test1.split(",");
+					float[] ints = new float[parts.length];
+					for (int i = 0; i < parts.length; i++) {
+					    ints[i] = Float.parseFloat(parts[i]);
 					}
 					
-					try {
-					String line;
+					String[] parts1 = test2.split(",");
+					float[] ints1 = new float[parts1.length];
+					for (int i = 0; i < parts1.length; i++) {
+					    ints1[i] = Float.parseFloat(parts1[i]);
+					}
 					
-				      Process p = Runtime.getRuntime().exec("cmd /c F:\\DBMS\\test.py");
-				      			      			      
-				         BufferedReader bri = new BufferedReader
-				        (new InputStreamReader(p.getInputStream()));
-				      BufferedReader bre = new BufferedReader
-				        (new InputStreamReader(p.getErrorStream()));
-				      while ((line = bri.readLine()) != null) {
-				        				        
-				       out.println("High Probability");
-				        
-				       
-				        
-				      }
-				      bri.close();
-				      while ((line = bre.readLine()) != null) {
-				        out.println(line);
-				      }
-				      bre.close();
-				      p.waitFor();
-				      
-				    }
-				    catch (Exception err) {
-				      err.printStackTrace();
-				    }	
+					String[] parts2 = test3.split(",");
+					float[] ints2 = new float[parts2.length];
+					for (int i = 0; i < parts2.length; i++) {
+					    ints2[i] = Float.parseFloat(parts2[i]);
+					}
+					
+					String[] parts3 = test4.split(",");
+					float[] ints3 = new float[parts3.length];
+					for (int i = 0; i < parts3.length; i++) {
+					    ints3[i] = Float.parseFloat(parts3[i]);
+					}
+					
+					System.out.println(java.util.Arrays.toString(ints3));
 					%>
 					
-
+					<%
+					
+					float age=1,dbp=1,sbp=1,chol=1;
+					for (InputInformation input1 : inp) {
+						age= input1.getAge();
+						dbp= input1.getBloodPressure1();
+						sbp =input1.getBloodPressure2();
+						chol=input1.getCholesterol();
+						
+					}
+					System.out.println(age);
+					System.out.println(dbp);
+					System.out.println(sbp);
+					System.out.println(chol);
+					
+					%>
 				</div>
 				<div id='resulttext'>
 					<div class='progress'>
@@ -156,24 +219,26 @@
 					<canvas id='dbpgraph'></canvas>
 				</div>
 				<script type="text/javascript">
-					let sbpchartarea = document.getElementById('sbpgraph').getContext('2d');
-					let dbpchartarea = document.getElementById('dbpgraph').getContext('2d');
-					
+					let sbpchartarea = document.getElementById('sbpgraph')
+							.getContext('2d');
+					let dbpchartarea = document.getElementById('dbpgraph')
+							.getContext('2d');
+
 					let sbpChart = new Chart(sbpchartarea, {
 						type : 'line',
 						data : {
-							labels: ['Systolic Bloodpressure']
+							labels : [ 'Systolic Bloodpressure' ]
 						},
-							options : {}
-					} );
+						options : {}
+					});
 
 					let dbpChart = new Chart(dbpchartarea, {
 						type : 'line',
 						data : {
-							labels: ['Diastolic Bloodpressure']
+							labels : [ 'Diastolic Bloodpressure' ]
 						},
 						options : {}
-					} );
+					});
 				</script>
 			</div>
 			<div class='row-md-12' id='graphbox'>
@@ -184,24 +249,26 @@
 					<canvas id='agegraph'></canvas>
 				</div>
 				<script type="text/javascript">
-					let agechartarea = document.getElementById('cholgraph').getContext('2d');
-					let cholchartarea = document.getElementById('agegraph').getContext('2d');
-					
+					let agechartarea = document.getElementById('cholgraph')
+							.getContext('2d');
+					let cholchartarea = document.getElementById('agegraph')
+							.getContext('2d');
+
 					let AgeChart = new Chart(agechartarea, {
 						type : 'line',
 						data : {
-							labels: ['Cholesterol']
+							labels : [ 'Cholesterol' ]
 						},
-							options : {}
-					} );
+						options : {}
+					});
 
 					let CholChart = new Chart(cholchartarea, {
 						type : 'line',
 						data : {
-							labels: ['Age']
+							labels : [ 'Age' ]
 						},
 						options : {}
-					} );
+					});
 				</script>
 			</div>
 		</div>

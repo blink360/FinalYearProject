@@ -10,7 +10,6 @@ def loadcsv(filename):
         dataset[i] = [float(x) for x in dataset[i]]
     return dataset
 
-
 def splitdataset(dataset, splitratio):
     trainsize = int(len(dataset) * splitratio)
     trainset = []
@@ -19,7 +18,6 @@ def splitdataset(dataset, splitratio):
         index = random.randrange(len(copy))
         trainset.append(copy.pop(index))
     return [trainset, copy]
-
 
 def separatebyclass(dataset):
     separated = {}
@@ -79,8 +77,7 @@ def predict(summaries, inputVector):
     for classValue, probablity in probablities.items():
         if bestLabel is None or probablity > bestProb:
             bestProb = probablity
-            bestLabel = classValue
-            
+            bestLabel = classValue           
     return bestLabel
 
 
@@ -89,7 +86,6 @@ def getpredictions(summaries, testSet):
     for i in range(len(testSet)):
         result = predict(summaries,testSet[i])
         predictions.append(result)
-    
     return predictions
 
 
@@ -102,17 +98,19 @@ def getaccuracy(testSet, predictions):
 
 
 def main():
-    dataset = loadcsv("MedicalData.csv")
-    testset = loadcsv("testset.csv")
+    dataset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\MedicalData.csv")
+    testset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\testset.csv")
     summaries = summarizebyclass(dataset)
     predictions = getpredictions(summaries, testset)
     print(predictions)
-
     accuracy = getaccuracy(testset,predictions)
-    ageset= loadcsv("age.csv")
-    sbpset = loadcsv("sbp.csv")
-    dbpset = loadcsv("dbp.csv")
-    cholset = loadcsv("chol.csv")   
-    
+    ageset= loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\age.csv")
+    print(ageset)
+    sbpset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\sbp.csv")
+    print(sbpset)
+    dbpset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\dbp.csv")
+    print(dbpset)
+    cholset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\chol.csv")
+    print(cholset)   
 
 main()
