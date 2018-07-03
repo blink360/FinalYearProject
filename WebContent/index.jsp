@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="resources/icons/learningheart.png" />
 <meta charset="utf-8">
 <link rel='stylesheet' type='text/css' href='CSS/home.css'>
 <link
@@ -26,13 +27,13 @@
 					Learning Hearts <img src='resources/logo.png'
 						style="width: 100px; height: 100px;">
 				</div>
-			</div>
+			</div> 
 			<nav class="navbar navbar-default">
 			<div class='container-fluid'>
 				<ul class="nav navbar-nav" id='menu'>
 					<li class='active'><a>Home</a></li>
-					<li><a>About</a></li>
-					<li><a>Contact</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="about.html">About</a></li>
 				</ul>
 			</div>
 			</nav>
@@ -43,7 +44,7 @@
 				<div class="row">
 					<div
 						class="col-lg-6 col-lg-offset-6 col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-2">
-						<form name='f1' id='form' method='POST' action="login">
+						<form name='f1' id='form' method='POST' action="result">
 							<div class="row">
 								<div class='form-group'>
 									<div class='col-sm-4'>Your Name</div>
@@ -136,6 +137,7 @@
 							</div>
 
 							<div class='row'>
+								
 								<div class='form-group'>
 									<div class='col-sm-8 col-sm-offset-4'>
 										<input type='submit' value='submit' class='button'>

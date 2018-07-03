@@ -45,9 +45,9 @@
 			<nav class="navbar navbar-default">
 			<div class='container-fluid'>
 				<ul class="nav navbar-nav" id='menu'>
-					<li class='active'><a>Home</a></li>
-					<li><a>About</a></li>
-					<li><a>Contact</a></li>
+					<li><a href="/LearningHeart">Home</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="about.html">About</a></li>
 				</ul>
 			</div>
 			</nav>
@@ -120,11 +120,16 @@
 								if (line.equals("[1.0]")) {
 					%>
 					<img src='resources/sad.png'
-						style="width: 200px; height: 200px; margin-left: 384px">
-					<h1>
-						<div id="high">you have high risk of having heart attack.
-							Please take care of your Health</div>
-					</h1>
+						style="width: 300px; height: 300px; margin-left: 384px;margin-top: -78px;">
+					<script>
+					function changeBackgroundRed(){
+						document.getElementById("result").style.backgroundColor = "#CD1010"; 
+					}
+					
+					changeBackgroundRed();</script>
+					
+						<div id="text" style="text-align:center;">You have a high risk of having a heart attack.
+							Please take care of your health!!</div>
 
 					<%
 						}
@@ -132,11 +137,18 @@
 								if (line.equals("[0.0]")) {
 					%>
 					<img src='resources/happy.jpg'
-						style="width: 260px; height: 200px; margin-left: 384px">
-					<h1>
-						<div id="high">Great!!! you have low risk of having heart
-							attack.</div>
-					</h1>
+						style="width: 300px; height: 300px; margin-left: 384px;margin-top: -78px;">
+					<script>
+					
+					function changeBackgroundGreen(){
+						document.getElementById("result").style.backgroundColor = "#0CA229 "; 
+					}
+					
+					
+					changeBackgroundGreen();</script>
+					
+						<div id="text" style="text-align:center;">You have minimal risk of a heart attack! Great!!</div>
+					
 					<%
 						}
 							}
@@ -204,12 +216,6 @@
 					
 					%>
 				</div>
-				<div id='resulttext'>
-					<div class='progress'>
-						<div class='progress-bar' role='progressbar' aria-valuenow='30'
-							aria-valuemin='0' aria-valuemax='100' style='width: 50%'></div>
-					</div>
-				</div>
 			</div>
 			<div class='row-md-12' id='graphbox'>
 				<div class='col-md-6 col-sm-6'>
@@ -269,6 +275,8 @@
 						},
 						options : {}
 					});
+
+					
 				</script>
 			</div>
 		</div>

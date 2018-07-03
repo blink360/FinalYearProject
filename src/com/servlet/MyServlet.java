@@ -19,12 +19,11 @@ import com.Info.InputInformation;
 /**
  * Servlet implementation class MyServlet
  */
-@WebServlet("/login")
+@WebServlet("/result")
 public class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String name;
 	int gender, smoking, alcohol;
-
 	int age, bloodPressure1, bloodPressure2, cholesterol;
 
 	int history, diabetes;

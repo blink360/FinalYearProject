@@ -40,15 +40,12 @@
 
 #result {
 	height: 400px;
-	background-color: red;
 	color: white;
-	
+	font-size: 35px;
 	padding-left: 50px;
+	font-family: 'Acme', sans-serif;
 }
 
-#high{
-	font-family:Impact;
-}
 
 #resulttext {
 	height: 100px;
