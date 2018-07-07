@@ -111,6 +111,8 @@ def main():
     dbpset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\dbp.csv")
     print(dbpset)
     cholset = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\chol.csv")
-    print(cholset)   
+    print(cholset)
+    hao = loadcsv("C:\\Users\\krijan\\Documents\\Eclispes\\LearningHeart\\hao.csv")
+    print(hao)   
 
 main()

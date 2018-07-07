@@ -65,44 +65,42 @@ iframe {
 	padding: 30px 15px 0px 15px;
 }
 
-
 .alert {
-    color: #ffffff;
-    border-radius: 0;
-    border: 0;
-    line-height: 1.5;
-    margin-bottom: 1.875rem;
-    padding: 1.25rem;
-    position: relative;
+	color: #ffffff;
+	border-radius: 0;
+	border: 0;
+	line-height: 1.5;
+	margin-bottom: 1.875rem;
+	padding: 1.25rem;
+	position: relative;
 }
 
 .alert-success {
-    background-color: #70c770;
+	background-color: #70c770;
 }
 
 .AboutUs_description {
-    background: white;
-    text-align: center;
-    font-size: 16px;
-    font-family: Verdana, Geneva, sans-serif;
+	background: white;
+	text-align: center;
+	font-size: 16px;
+	font-family: Verdana, Geneva, sans-serif;
 }
 
 .AboutUs_blurb {
-    max-width: 700px;
-    margin: 0 auto;
+	max-width: 700px;
+	margin: 0 auto;
 }
 
 .AboutUs_links {
-    line-height: 2;
-    color: #3ec9cb;
+	line-height: 2;
+	color: #3ec9cb;
 }
-
 
 .contact100-form {
 	width: 560px;
 	min-height: 100vh;
 	display: block;
-	padding: 0px 55px 55px 55px;
+	padding: 80px 55px 55px 55px;
 }
 
 .contact100-form-title {
@@ -260,4 +258,18 @@ textarea.input100 {
 .alert-validate:hover:before {
 	visibility: visible;
 	opacity: 1;
+}
+
+#success {
+	width: 270px;
+	height: 60px;
+	position: absolute;
+	margin-left: -143px;
+    margin-top: 5px;
+	background-color: green;
+	font-family: Impact;
+	color: white;
+	padding: 20px;
+	padding-left: 50px;
+	display: none;
 }

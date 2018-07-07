@@ -30,8 +30,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-
-
 </head>
 <body>
 	<div id='pagecontainer'>
@@ -46,8 +44,8 @@
 			<div class='container-fluid'>
 				<ul class="nav navbar-nav" id='menu'>
 					<li><a href="/LearningHeart">Home</a></li>
-						<li><a href="contact.html">Contact</a></li>
-						<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="about.html">About</a></li>
 				</ul>
 			</div>
 			</nav>
@@ -58,8 +56,9 @@
 
 					<%
 						List<InputInformation> inp = (ArrayList) request.getAttribute("list");
+					String name=null;
+					int gender=1;
 					%>
-
 					</br> </br>
 
 					<%
@@ -101,9 +100,12 @@
 
 							pw.write(sb.toString());
 							pw.close();
+							
+							name = input1.getName();
+							gender = input1.getGender();
 
 						}
-						String[] text = new String[5];
+						String[] text = new String[6];
 						try {
 							String line;
 							int count = 0;
@@ -120,35 +122,50 @@
 								if (line.equals("[1.0]")) {
 					%>
 					<img src='resources/sad.png'
-						style="width: 300px; height: 300px; margin-left: 384px;margin-top: -78px;">
+						style="width: 300px; height: 300px; margin-left: 384px; margin-top: -112px;">
 					<script>
 					function changeBackgroundRed(){
 						document.getElementById("result").style.backgroundColor = "#CD1010"; 
 					}
 					
 					changeBackgroundRed();</script>
+
+					<div id="text" style="text-align: center;margin-left: -41px;"><%
 					
-						<div id="text" style="text-align:center;">You have a high risk of having a heart attack.
-							Please take care of your health!!</div>
+					 if(gender==1){
+						 out.println("Mr.");
+					 }else{
+						 out.println("Ms.");
+					 }
+					
+					%><%=name %> you have a high
+						risk of having a heart attack. Please take care of your health!!</div>
 
 					<%
 						}
 
-								if (line.equals("[0.0]")) {
+					if (line.equals("[0.0]")) {
 					%>
 					<img src='resources/happy.jpg'
-						style="width: 300px; height: 300px; margin-left: 384px;margin-top: -78px;">
+						style="width: 300px; height: 300px; margin-left: 384px; margin-top: -112px;">
 					<script>
 					
 					function changeBackgroundGreen(){
 						document.getElementById("result").style.backgroundColor = "#0CA229 "; 
 					}
 					
-					
 					changeBackgroundGreen();</script>
+
+					<div id="text" style="text-align: center;margin-left: -41px;"><%
+					 if(gender==1){
+						 out.println("Mr.");
+					 }else{
+						 out.println("Ms.");
+					 }
 					
-						<div id="text" style="text-align:center;">You have minimal risk of a heart attack! Great!!</div>
-					
+					%><%=name %> you have minimal
+						risk of a heart attack! Great!!</div>
+
 					<%
 						}
 							}
@@ -166,54 +183,51 @@
 					%>
 
 					<%
+						String test1 = text[1].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+						String test2 = text[2].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+						String test3 = text[3].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+						String test4 = text[4].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+						String test5 = text[5].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
+
+						String[] parts = test1.split(",");
+						float[] ageset = new float[parts.length];
+						for (int i = 0; i < parts.length; i++) {
+							ageset[i] = Float.parseFloat(parts[i]);
+						}
+
+						String[] parts1 = test2.split(",");
+						float[] sbpset = new float[parts1.length];
+						for (int i = 0; i < parts1.length; i++) {
+							sbpset[i] = Float.parseFloat(parts1[i]);
+						}
+
+						String[] parts2 = test3.split(",");
+						float[] dbpset = new float[parts2.length];
+						for (int i = 0; i < parts2.length; i++) {
+							dbpset[i] = Float.parseFloat(parts2[i]);
+						}
+
+						String[] parts3 = test4.split(",");
+						float[] cholset = new float[parts3.length];
+						for (int i = 0; i < parts3.length; i++) {
+							cholset[i] = Float.parseFloat(parts3[i]);
+						}
 						
-					String test1 = text[1].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
-					String test2 = text[2].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
-					String test3 = text[3].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
-					String test4 = text[4].toString().replaceAll("(^\\[|\\[|\\]|\\]$)", "");
-					
-					String[] parts = test1.split(",");
-					float[] ints = new float[parts.length];
-					for (int i = 0; i < parts.length; i++) {
-					    ints[i] = Float.parseFloat(parts[i]);
-					}
-					
-					String[] parts1 = test2.split(",");
-					float[] ints1 = new float[parts1.length];
-					for (int i = 0; i < parts1.length; i++) {
-					    ints1[i] = Float.parseFloat(parts1[i]);
-					}
-					
-					String[] parts2 = test3.split(",");
-					float[] ints2 = new float[parts2.length];
-					for (int i = 0; i < parts2.length; i++) {
-					    ints2[i] = Float.parseFloat(parts2[i]);
-					}
-					
-					String[] parts3 = test4.split(",");
-					float[] ints3 = new float[parts3.length];
-					for (int i = 0; i < parts3.length; i++) {
-					    ints3[i] = Float.parseFloat(parts3[i]);
-					}
-					
-					System.out.println(java.util.Arrays.toString(ints3));
+						String[] parts4 = test5.split(",");
+						float[] hao = new float[parts4.length];
+						for (int i = 0; i < parts4.length; i++) {
+							hao[i] = Float.parseFloat(parts4[i]);
+						}
 					%>
-					
+
 					<%
-					
-					float age=1,dbp=1,sbp=1,chol=1;
-					for (InputInformation input1 : inp) {
-						age= input1.getAge();
-						dbp= input1.getBloodPressure1();
-						sbp =input1.getBloodPressure2();
-						chol=input1.getCholesterol();
-						
-					}
-					System.out.println(age);
-					System.out.println(dbp);
-					System.out.println(sbp);
-					System.out.println(chol);
-					
+						float age = 1, dbp = 1, sbp = 1, chol = 1;
+						for (InputInformation input1 : inp) {
+							age = input1.getAge();
+							sbp = input1.getBloodPressure1();
+							dbp = input1.getBloodPressure2();
+							chol = input1.getCholesterol();
+						}
 					%>
 				</div>
 			</div>
@@ -233,17 +247,39 @@
 					let sbpChart = new Chart(sbpchartarea, {
 						type : 'line',
 						data : {
-							labels : [ 'Systolic Bloodpressure' ]
+							labels : [ 'Systolic Bloodpressure' ],
+						datasets: [{
+						label: "Systolic BP",
+						data:<%=java.util.Arrays.toString(sbpset)%>,
+						backgroundColor:"#EE4E3B",
+						spanGaps: true,
 						},
+							{
+							label: "User",
+							data:[<%=sbp%>],
+							backgroundColor:"#223344",
+						}],
 						options : {}
+						} 
 					});
 
 					let dbpChart = new Chart(dbpchartarea, {
 						type : 'line',
 						data : {
-							labels : [ 'Diastolic Bloodpressure' ]
-						},
+							labels : [ 'Diastolic Bloodpressure' ],
+							datasets: [{
+								label: "Diastolic BP",
+								data:<%=java.util.Arrays.toString(dbpset)%>,
+								backgroundColor:"#EE4E3B",
+								spanGaps: true,
+								},
+									{
+									label: "User",
+									data:[<%=dbp%>],
+									backgroundColor:"#223344",
+								}],
 						options : {}
+						} 
 					});
 				</script>
 			</div>
@@ -263,20 +299,42 @@
 					let AgeChart = new Chart(agechartarea, {
 						type : 'line',
 						data : {
-							labels : [ 'Cholesterol' ]
+							labels:[1,0],
+							datasets: [{
+							label: "Age",
+							data:<%=java.util.Arrays.toString(ageset)%>,
+							backgroundColor:"#EE4E3B",
+							spanGaps: true,
+							
 						},
-						options : {}
-					});
+							{
+							label: "User",
+							data:[<%=age%>],
+							backgroundColor:"#223344",
+							
+						}],
+							options : {}
+					} 
+				});
 
 					let CholChart = new Chart(cholchartarea, {
 						type : 'line',
 						data : {
-							labels : [ 'Age' ]
+							labels: [0.25,0.3,0.32,0.36,0.4,0.45,0.46,0.63,0.75],
+							datasets: [{
+							label: "Cholesterol",
+							data:<%=java.util.Arrays.toString(cholset)%>,
+							backgroundColor:"#0BAFFB"
 						},
-						options : {}
-					});
+							{
+							label: "User",
+							data:[<%=chol%>],
+							backgroundColor:"#223344",
+						}],
+							options : {}
+					} 
+					} );
 
-					
 				</script>
 			</div>
 		</div>

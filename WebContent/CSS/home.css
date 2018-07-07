@@ -64,11 +64,20 @@
 .button {
 	height: 50px;
 	width: 100px;
-	margin: 20px;
+	margin-top: 33px;
+	margin-left: 8px;
 	font-family: 'Acme', sans-serif;
 	text-transform: uppercase;
 	background-color: #D11010;
 	color: white;
+}
+
+#error {
+	font-family: verdana, Helvetica;
+	color: red;
+	margin-left: 324px;
+	margin-top: 45px;
+	position: absolute;
 }
 
 @media only screen and (max-width: 500px) {
@@ -76,4 +85,3 @@
 		font-size: 13px;
 	}
 }
-
